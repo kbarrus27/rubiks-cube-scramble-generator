@@ -21,8 +21,6 @@ print("Last move: " + lastMove)
 print("Next move: " + nextMove)
 '''
 
-
-
 while len(sequence) < numberOfMoves:
     
     #update variables
@@ -31,7 +29,7 @@ while len(sequence) < numberOfMoves:
         
         
     #combine the same moves
-    if len(sequence) > 0:
+    if len(sequence) > 1:
                
         lastMove = sequence[len(sequence)-1]
         #print("Last move: " + lastMove)
@@ -55,7 +53,7 @@ while len(sequence) < numberOfMoves:
                 print("Error -- move is not in list of moves")
         
         #if you have a "2" version of one move and then the same move after or before it
-        elif nextMove in lastMove or ("'" in nextMove and nextMove - "'" in lastMove):
+        elif nextMove in lastMove:
             #print("need to generate a new move")
             pass
 
@@ -71,52 +69,45 @@ while len(sequence) < numberOfMoves:
         else:
             #add the next move
             sequence.append(nextMove)
+    else:
+        sequence.append(nextMove)
     
     #print("Here is your current list of moves: ")
     #print(sequence)
-
-                
-                
-    
-    #check whether there are any moves that cancel each other out
-    '''
-    for letter in ['R', 'L', 'U', 'B', 'F', 'D']:
-        if (letter in lastMove) and (letter in nextMove):
-            
-            #if you have the same move twice
-            if nextMove == lastMove:
-                print("These two moves are the same.")
-                print("Removing " + lastMove + "...")
-                sequence.remove(lastMove)
-        
-                if nextMove in ['R', 'L', 'U', 'B', 'F', 'D']:
-                    print("Changing " + nextMove + " to " + nextMove + "2...")
-                    nextMove = nextMove + "2"
-            
-                elif nextMove in ["R'", "L'", "U'", "B'", "F'", "D'"]:
-                    print("Changing " + nextMove + "...")
-                    nextMove = nextMove.replace("'", "")
-                    nextMove = nextMove + "2"
-                    print("The move is now " + nextMove + ".")
-            
-                else:
-                    print("Error -- move is not in list of moves")
-             
-            #Other scenarios:
-            #if you have a "2" version of one move and then the same move after or before it
-            #if you have one move, and then an inverse of the same move
-        
-            #In both cases, generate a new move    
-            else:
-'''
-    
     
 print("Here is your final list of moves: ")
 for letter in sequence:
-    print(letter, end = " ")
+    print(letter, end = "   ")
 
+#Code to come back to later
+'''
+#check whether there are any moves that cancel each other out
+for letter in ['R', 'L', 'U', 'B', 'F', 'D']:
+if (letter in lastMove) and (letter in nextMove):
+    
+    #if you have the same move twice
+    if nextMove == lastMove:
+        print("These two moves are the same.")
+        print("Removing " + lastMove + "...")
+        sequence.remove(lastMove)
 
-'''
-for i in sequence:
-    print(sequence[int(i)] + '\n')
-'''
+        if nextMove in ['R', 'L', 'U', 'B', 'F', 'D']:
+            print("Changing " + nextMove + " to " + nextMove + "2...")
+            nextMove = nextMove + "2"
+    
+        elif nextMove in ["R'", "L'", "U'", "B'", "F'", "D'"]:
+            print("Changing " + nextMove + "...")
+            nextMove = nextMove.replace("'", "")
+            nextMove = nextMove + "2"
+            print("The move is now " + nextMove + ".")
+    
+        else:
+            print("Error -- move is not in list of moves")
+        
+    #Other scenarios:
+    #if you have a "2" version of one move and then the same move after or before it
+    #if you have one move, and then an inverse of the same move
+
+    #In both cases, generate a new move    
+    else:
+    '''
